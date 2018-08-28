@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NUnit.Framework;
+using PROG2070A2;
+/* Julia Bernoski
+ * Revision History Feb 22nd, due Feb 23rd
+ *Unit testing my TriangleSolver analyze method
+ */
+namespace TriangleSolverTests.tests
+{
+    [TestFixture]
+    class TriangleSolverTests
+    {
+        //test to check if it forms a proper triangle
+        [Test]
+        public void FormsATriangle_3_4_5_True()
+        {
+            TriangleSolver ts = new TriangleSolver();
+            string expected = TriangleSolver.analyze(3, 4, 5);
+            string actual = TriangleSolver.analyze(3, 4, 5);
+            Assert.AreEqual(expected, actual);
+        }
+
+        //test to check it doesn't form a triangle
+        // should not be able to go into the part of my method about what kind of triangle it is
+        [Test]
+        public void FormsATriangle_3_1_0_False()
+        {
+
+            TriangleSolver ts = new TriangleSolver();
+            string expected = TriangleSolver.analyze(3, 4, 5);
+            string actual = TriangleSolver.analyze(3, 1, 0);
+            Assert.AreNotEqual(expected, actual);
+        }
+
+        //test to check if forms a proper Isosceles triangle
+        [Test]
+        public void IsoceleseTest_3_3_4_True()
+        {
+            Assert.AreEqual(5, 5, 4, TriangleSolver.analyze(5, 5, 4));
+        }
+
+        //test to check if forms a proper Equilateral
+        [Test]
+        public void EquilateralTest_5_5_5_True()
+        {
+            Assert.AreEqual(5, 5, 5, TriangleSolver.analyze(5, 5, 5));
+        }
+
+        //test to check if forms a proper scalene triangle
+        [Test]
+        public void ScaleneTest_6_5_7_True()
+        {
+            Assert.AreEqual(6, 5, 7, TriangleSolver.analyze(6, 5, 7));
+        }
+
+        //test to check that it knows what values don't form a isosceles triangle
+        //isn't able to go into the part of method that determines if it's Isosceles
+        [Test]
+        public void IsoscelesTest_3_3_12_False()
+        {
+            Assert.AreEqual(3, 3, 12, TriangleSolver.analyze(3, 3, 12));
+        }
+
+        //test to check that it knows what values don't form a equilateral
+        //isn't able to pass the first part of method, therefor won't be an equilateral
+        [Test]
+        public void EquilateralTest_0_0_0_False()
+        {
+            Assert.AreEqual(0, 0, 0, TriangleSolver.analyze(0, 0, 0));
+        }
+
+        //test to check that it knowws what value don't form a scalene triangle
+        //fails, doesn't form a proper scalene triangle
+        [Test]
+        public void ScaleneTest_5_6_23_False()
+        {
+            Assert.AreEqual(5, 6, 23, TriangleSolver.analyze(5, 6, 23));
+        }
+
+       
+    }
+}
